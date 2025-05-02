@@ -16,7 +16,7 @@
                 $password = $_POST['password'];
 
                 // Check credentials in the database
-                $q = "SELECT * FROM users WHERE username = :username";
+                $q = "SELECT * FROM users_login_inf WHERE username = :username";
                 $sql = $this->db_conn->prepare($q);
                 $sql->bindParam(':username', $username);
                 $sql->execute();

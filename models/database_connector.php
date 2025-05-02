@@ -1,7 +1,7 @@
 <?php
-    class Database_connector {
+    class DatabaseConnector {
         private $host = 'localhost';
-        private $db_name = 'zzz_db';
+        private $db_name = 'wp_pk_ch';
         private $username = 'root';
         private $password = '';
         private $db_conn;
