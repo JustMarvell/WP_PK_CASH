@@ -1,7 +1,15 @@
 <?php
     class Utils {
+        private $utils;
+
         public static function Redirect($url) {
-            header("Location: $url");
+            if ($url == "" || $url == null) {
+                print_r("URL is empty or null. Redirecting to index.php.");
+                $url = "index.php"; // Default redirect URL
+            }
+            else {
+                header("Location: $url");
+            }
             exit();
         }
 

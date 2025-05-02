@@ -1,12 +1,15 @@
 <?php
     include_once __DIR__ . '/../models/database_connector.php';
+    include_once __DIR__ . '/../controllers/utils.php'; // Include utility functions
 
     class authentication {
         private $db_conn;
+        private $utils;
 
         // constructor to initialize db connection
         public function __construct($db) {
             $this->db_conn = $db;
+            $this->utils = new Utils(); // Initialize utility functions
         }
 
         public function login() {
@@ -37,11 +40,10 @@
 
                         // Redirect based on role
                         if ($user['role'] === 'admin') {
-                            header("Location: admin.php");
+                            $this->utils->Redirect('admin.php'); // Redirect to admin dashboard
                         } else {
-                            header("Location: welcome.php");
+                            $this->utils->Redirect('welcome.php'); // Redirect to user dashboard
                         }
-                        exit();
                     } else {
                         error_log("Password does not match for user: $username"); // Add log
                         return "Login failed. Please try again."; // Return error message

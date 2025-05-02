@@ -4,6 +4,7 @@
     session_start();
     include_once '../../models/database_connector.php'; // include database connection file
     include_once '../../controllers/authenticator.php'; // include authentication controller file
+    include_once '../../controllers/utils.php'; // include utility functions
 
     // Create a new instance of the database connection
     $db = new DatabaseConnector();
