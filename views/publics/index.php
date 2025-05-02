@@ -3,7 +3,7 @@
 <?php
     session_start();
     include_once '../../models/database_connector.php'; // include database connection file
-    include_once '../../controllers/authentication.php'; // include authentication controller file
+    include_once '../../controllers/authenticator.php'; // include authentication controller file
 
     // Create a new instance of the database connection
     $db = new DatabaseConnector();
