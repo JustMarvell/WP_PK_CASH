@@ -24,5 +24,15 @@
         public static function ConvertToRupiah($amount) {
             return "Rp " . number_format($amount, 2, ',', '.');
         }
+
+        // Function to set unique int ID for a table
+        public static function SetUniqueIntId($db_conn, $table_name) {
+            $q = "SELECT MAX(id) as max_id FROM $table_name";
+            $sql = $db_conn->prepare($q);
+            $sql->execute();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+            return $result['max_id'] + 1; // Increment max ID by 1
+        }
+
     }
 ?>
