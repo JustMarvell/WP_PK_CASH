@@ -54,14 +54,14 @@
                 <?php if ($err_msg): ?>
                     <div class="alert alert-danger"><?php echo $err_msg; ?></div>
                 <?php endif; ?>
+                
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
 
     <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-7+Q2j6v4x4+0
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
