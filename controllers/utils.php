@@ -34,5 +34,11 @@
             return $result['max_id'] + 1; // Increment max ID by 1
         }
 
+        // Function to set unique ID for products
+        public static function SetUniqueProductId($category) {
+            $prefix = strtoupper(substr($category, 0, 3)); // Get first 3 letters of category
+            $uniqueId = $prefix . "-" . uniqid(); // Generate unique ID
+            return $uniqueId; // Return unique ID
+        }
     }
 ?>
