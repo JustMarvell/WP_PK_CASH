@@ -43,7 +43,7 @@
 <body>
     <div class="container-fluid main d-flex justify-content-center align-items-center">
         <div class="login-box text-center">
-            <h1>Login</h1>
+            <h1 class="mt-5 pt-5">Login</h1>
             <form method="POST" action="index.php">
                 <div class="mb-3">
                     <input type="text" name="username" class="form-control" placeholder="Username" required>
