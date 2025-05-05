@@ -57,9 +57,6 @@
                 <?php endif; ?>
                 
                 <button type="submit" class="btn btn-primary">Login</button>
-                <div class="mt-3">
-                    <a href="register.php" class="btn btn-secondary">Register</a>
-                </div>
             </form>
         </div>
     </div>
