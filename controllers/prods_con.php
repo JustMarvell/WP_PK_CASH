@@ -17,18 +17,45 @@
         }
 
         // Function to delete product by ID
-        public function DeleteProduct($id) {
-            return $this->productModel->DeleteProductById($id); // Call method from Product model to delete product by ID
+        public function DeleteProduct($post) {
+            $id = $post['prod_id']; // Get product ID from POST data
+            return $this->productModel->DeleteProductById($id); // Call method from Product model to delete product
         }
 
         // Function to add product
-        public function AddProduct($name, $quantity, $description, $image, $price, $category) {
-            return $this->productModel->AddProduct($name, $quantity, $description, $image, $price, $category); // Call method from Product model to add product
+        public function AddNewProduct($post, $file) {
+            $this->productModel->name = $post['prod_name']; // Set product name
+            $this->productModel->quantity = $post['prod_quantity']; // Set product quantity
+            $this->productModel->description = $post['prod_description']; // Set product description
+            $this->productModel->price = $post['prod_price']; // Set product price
+            $this->productModel->category = $post['prod_category']; // Set product category
+
+            // Handle image upload
+            $target_file = $this->productModel->UploadImage($file['prod_img']); // Upload image and get target file path
+            $this->productModel->image = $target_file; // Set product image path
+
+            return $this->productModel->AddProduct(); // Call method from Product model to add product
         }
 
         // Function to edit product
-        public function EditProduct($id, $name, $quantity, $description, $image, $price, $category) {
-            return $this->productModel->EditProduct($id, $name, $quantity, $description, $image, $price, $category); // Call method from Product model to edit product
+        public function EditProduct($post, $file) {
+            $this->productModel->id = $post['prod_id']; // Set product ID
+            $this->productModel->name = $post['prod_name']; // Set product name
+            $this->productModel->quantity = $post['prod_quantity']; // Set product quantity
+            $this->productModel->description = $post['prod_description']; // Set product description
+            $this->productModel->price = $post['prod_price']; // Set product price
+            $this->productModel->category = $post['prod_category']; // Set product category
+
+            // Handle image upload
+            if (isset($file['prod_img']) && $file['prod_img']['error'] == UPLOAD_ERR_OK) {
+                $target_file = $this->productModel->UploadImage($file['prod_img']); // Upload image and get target file path
+                $this->productModel->image = $target_file; // Set product image path
+            } else {
+                // If no new image uploaded, keep the current image
+                $this->productModel->image = $post['current_image'];
+            }
+
+            return $this->productModel->EditProduct(); // Call method from Product model to edit product
         }
 
         // Function to get product by ID

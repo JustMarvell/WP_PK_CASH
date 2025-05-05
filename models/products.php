@@ -29,43 +29,58 @@
 
         // Delete product by ID
         public function DeleteProductById($id): bool {
-            $q = "DELETE FROM " . $this->table . " WHERE id = :id";
+            // get image path before delete
+            $q = "SELECT prod_img FROM " . $this->table . " WHERE id = :id";
             $sql = $this->db_conn->prepare($q);
             $sql->bindParam(':id', $id);
-            return $sql->execute(); // Return execution result
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $product = $sql->fetch(PDO::FETCH_ASSOC);
+                $image_path = $product['prod_img']; // Get image path
+
+                $q = "DELETE FROM " . $this->table . " WHERE id = :id"; // Delete product
+                $sql = $this->db_conn->prepare($q);
+                $sql->bindParam(':id', $id);
+                $sql->execute(); // Execute delete query
+
+                if (file_exists($image_path)) {
+                    unlink($image_path); // Delete image file
+                }
+            }
         }
 
         // Add product
-        public function AddProduct($name, $quantity, $description, $image, $price, $category): bool {
+        public function AddProduct(): bool {
             $q = "INSERT INTO " . $this->table . " (id, prod_name, prod_qty, prod_desc, prod_img, prod_price, prod_category) 
                   VALUES (:id, :name, :quantity, :description, :image, :price, :category)";
             
             $sql = $this->db_conn->prepare($q);
-            $sql->bindParam(':id', $this->utils->SetUniqueProductId($category)); // Bind unique ID
-            $sql->bindParam(':name', $name);
-            $sql->bindParam(':quantity', $quantity);
-            $sql->bindParam(':description', $description);
-            $sql->bindParam(':image', $image);
-            $sql->bindParam(':price', $price);
-            $sql->bindParam(':category', $category);
+            $sql->bindParam(':id', $this->utils->SetUniqueProductId($this->category)); // Bind unique ID
+            $sql->bindParam(':name', $this->name);
+            $sql->bindParam(':quantity', $this->quantity);
+            $sql->bindParam(':description', $this->description);
+            $sql->bindParam(':image', $this->image);
+            $sql->bindParam(':price', $this->price);
+            $sql->bindParam(':category', $this->category);
 
             return $sql->execute(); // Return execution result
         }
 
         // Edit product
-        public function EditProduct($id, $name, $quantity, $description, $image, $price, $category): bool {
+        public function EditProduct(): bool {
             $q = "UPDATE " . $this->table . " SET prod_name = :name, prod_qty = :quantity, 
                   prod_desc = :description, prod_img = :image, prod_price = :price, prod_category = :category 
                   WHERE id = :id";
             
             $sql = $this->db_conn->prepare($q);
-            $sql->bindParam(':id', $id);
-            $sql->bindParam(':name', $name);
-            $sql->bindParam(':quantity', $quantity);
-            $sql->bindParam(':description', $description);
-            $sql->bindParam(':image', $image);
-            $sql->bindParam(':price', $price);
-            $sql->bindParam(':category', $category);
+            $sql->bindParam(':id', $this->id);
+            $sql->bindParam(':name', $this->name);
+            $sql->bindParam(':quantity', $this->quantity);
+            $sql->bindParam(':description', $this->description);
+            $sql->bindParam(':image', $this->image);
+            $sql->bindParam(':price', $this->price);
+            $sql->bindParam(':category', $this->category);
 
             return $sql->execute(); // Return execution result
         }
