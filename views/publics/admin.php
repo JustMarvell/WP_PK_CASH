@@ -186,7 +186,7 @@
             <?php foreach ($products as $product): ?>
                 <tr class="table-light">
                     <td><?php echo htmlspecialchars($product['prod_name']); ?></td>
-                    <td><?php echo htmlspecialchars($product['prod_price']); ?></td>
+                    <td><?php echo htmlspecialchars($utils->ConvertToRupiah($product['prod_price'])); ?></td>
                     <td><?php echo htmlspecialchars($product['prod_qty']); ?></td>
                     <td><?php echo htmlspecialchars($product['prod_category']); ?></td>
                     <td><?php echo htmlspecialchars($product['prod_desc']); ?></td>
