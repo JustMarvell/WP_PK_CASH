@@ -26,9 +26,10 @@
             elseif (isset($_POST['delete'])) {
                 $productController->DeleteProduct($_POST); // Call method to delete product
             }
-            elseif (isset($_POST['edit'])) {
-                $utils->Redirect('admin_edit_prod.php'); // Redirect to edit product page
-            }
+            // elseif (isset($_POST['edit'])) {
+            //     // Edit product logic
+            //     // Similar to add product logic but with edit functionality
+            // } 
             break;
         case 'GET':
             break; // Handle GET requests if needed

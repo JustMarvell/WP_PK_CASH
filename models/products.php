@@ -28,7 +28,7 @@
         }
 
         // Delete product by ID
-        public function DeleteProductById($id): bool {
+        public function DeleteProductById($id){
             // get image path before delete
             $q = "SELECT prod_img FROM " . $this->table . " WHERE id = :id";
             $sql = $this->db_conn->prepare($q);
@@ -55,8 +55,11 @@
             $q = "INSERT INTO " . $this->table . " (id, prod_name, prod_qty, prod_desc, prod_img, prod_price, prod_category) 
                   VALUES (:id, :name, :quantity, :description, :image, :price, :category)";
             
+            $uID = $this->utils->SetUniqueProductId($this->category); // Get unique ID for product
+            $this->id = $uID; // Set unique ID
+
             $sql = $this->db_conn->prepare($q);
-            $sql->bindParam(':id', $this->utils->SetUniqueProductId($this->category)); // Bind unique ID
+            $sql->bindParam(':id', $this->id); // Bind unique ID
             $sql->bindParam(':name', $this->name);
             $sql->bindParam(':quantity', $this->quantity);
             $sql->bindParam(':description', $this->description);

@@ -25,8 +25,8 @@
         // Function to add product
         public function AddNewProduct($post, $file) {
             $this->productModel->name = $post['prod_name']; // Set product name
-            $this->productModel->quantity = $post['prod_quantity']; // Set product quantity
-            $this->productModel->description = $post['prod_description']; // Set product description
+            $this->productModel->quantity = $post['prod_qty']; // Set product quantity
+            $this->productModel->description = $post['prod_desc']; // Set product description
             $this->productModel->price = $post['prod_price']; // Set product price
             $this->productModel->category = $post['prod_category']; // Set product category
 
@@ -41,7 +41,7 @@
         public function EditProduct($post, $file) {
             $this->productModel->id = $post['prod_id']; // Set product ID
             $this->productModel->name = $post['prod_name']; // Set product name
-            $this->productModel->quantity = $post['prod_quantity']; // Set product quantity
+            $this->productModel->quantity = $post['prod_qty']; // Set product quantity
             $this->productModel->description = $post['prod_description']; // Set product description
             $this->productModel->price = $post['prod_price']; // Set product price
             $this->productModel->category = $post['prod_category']; // Set product category
