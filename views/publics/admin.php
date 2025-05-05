@@ -92,6 +92,10 @@
 </style>
 <body>
     <div class="container">
+        <a href="index.php" class="btn btn-primary">Back to Login</a>
+    </div>
+
+    <div class="container">
         <h2>Admin Page</h2>
         
         <?php if(isset($_SESSION['success'])): ?>

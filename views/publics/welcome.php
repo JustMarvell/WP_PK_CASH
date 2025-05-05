@@ -83,6 +83,10 @@
 </style>
 <body>
     <div class="container">
+        <!-- button to go back to login page -->
+        <a href="index.php" class="btn btn-primary mt-3">Back to Login</a>
+    </div>
+    <div class="container">
         <h2>Welcome to the Product List</h2>
         
         <?php if(isset($_SESSION['success'])): ?>
@@ -96,11 +100,13 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Category</th>
+                    <th>Description</th>
                     <th>Image</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

@@ -93,6 +93,11 @@
 </style>
 <body>
     <div class="container">
+        <!-- button to go back to admin page -->
+        <a href="admin.php" class="btn btn-primary">back to admin page</a>
+    </div>
+
+    <div class="container">
         <h2>Admin Page</h2>
         
         <?php if(isset($_SESSION['success'])): ?>
