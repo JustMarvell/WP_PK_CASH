@@ -117,7 +117,7 @@
 
             // Allow certain file formats
             if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-                $uploadOk = 0;
+                return false;
             }
 
             // Check if $uploadOk is set to 0 by an error
