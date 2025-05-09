@@ -14,8 +14,11 @@
     $userController = new UserCnt($db_conn); // Create a new instance of the User controller
     $utils = new Utils(); // Create a new instance of the utility functions
 
-    $err_msg = ''; // Initialize error message variable
-    $success_msg = ''; // Initialize success message variable
+    // Check if the user not an admin, if not redirect to login page
+    if ($_SESSION['role'] != 'admin') {
+        header('Location: index.php'); // Redirect to login page
+        exit();
+    }
 
     // add, edit, and delete product
     switch ($_SERVER['REQUEST_METHOD']) {

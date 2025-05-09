@@ -37,12 +37,13 @@
                         $_SESSION['user_id'] = $user['id']; // Store user ID
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['role'] = $user['role'];
+                        $_SESSION['is_logged_in'] = 'true';
 
                         // Redirect based on role
                         if ($user['role'] === 'admin') {
                             $this->utils->Redirect('admin.php'); // Redirect to admin dashboard
                         } else {
-                            $this->utils->Redirect('welcome.php'); // Redirect to user dashboard
+                            $this->utils->Redirect('index_nn.php'); // Redirect to user dashboard
                         }
                     } else {
                         error_log("Password does not match for user: $username"); // Add log
