@@ -8,14 +8,16 @@
     
     include_once '../../models/database_connector.php'; // Include database connection file
     include_once '../../controllers/prods_con.php'; // Include Product controller file
-    include_once '../../controllers/utils.php'; // Include utility functions
+    include_once '../../controllers/utils.php'; // Include utility functions file
     include_once '../../controllers/usrs_con.php'; // Include User controller file
+    include_once '../../controllers/purch_con.php'; // Include purchase controller file
 
     $db = new DatabaseConnector(); // Create a new instance of the database connection
     $db_conn = $db->GetConnection(); // Get the database connection
     $productController = new ProductController($db_conn); // Create a new instance of the Product controller
     $utils = new Utils(); // Create a new instance of the utility functions
     $userController = new UserCnt($db_conn); // Create a new instance of the User controller
+    $purchaseController = new PurchCon($db_conn); // Create a new instance of the purchase controller
 
     // ini nda mo tapake sih seharusnya
     // tapi biarlah siap siap sapa tau mo tapake hehehe #marvel :)
@@ -38,6 +40,9 @@
         // handle post request
         case 'POST':
             // TODO : check if user is requesting to buy product
+            if (isset($_POST['purch_prod'])) {
+                header("Location:buy.php?prod_id=" . $_POST['prod_id']);
+            }
             break;
         // handle get request
         case 'GET':
@@ -80,7 +85,9 @@
         <div class="login-button">
             <div class='prod-name'>
                 <?php echo $login_button; ?>
-                Welcome : <?php echo $_SESSION['username']?>
+                <?php if (isset($_SESSION['username'])) {
+                    ?> Welcome : <?php echo $_SESSION['username'];
+                } ?>
             </div>
         </div>
     </div>
@@ -123,7 +130,7 @@
                     <span class="prod-stock">STOK TERBATAS</span>
                     <form method="POST" action="" style="width:100%;">
                         <input type="hidden" name="prod_id" value="<?php echo $product['id']; ?>" />
-                        <button type="submit" name="buy" class="buy-btn">Buy</button>
+                        <button type="submit" name="purch_prod" class="buy-btn">Buy</button>
                     </form>
                 </div>
             <?php endforeach; ?>

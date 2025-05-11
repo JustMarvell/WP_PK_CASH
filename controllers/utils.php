@@ -40,5 +40,11 @@
             $uniqueId = $prefix . "-" . uniqid(); // Generate unique ID
             return $uniqueId; // Return unique ID
         }
+
+        // Function to set unique string ID
+        public static function SetUniqueStringID($prefix) {
+            $uniqueID = strtroupper(substr($prefix, 0, 6)) . "_" . uniqid(); // Generate unique ID
+            return $uniqueID; // Return unique ID
+        }
     }
 ?>
