@@ -22,12 +22,17 @@
     $product = $productController->GetProductByID($prd_id);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $receipt = $purchaseController->CreateReceipt($product['prod_name'], $_POST['ord_qty'], $product['prod_price']);
-
-        header('Content-Type: text/plain');
-        header('Content-Disposition: attachment; filename="receipt.txt"');
-        echo $receipt;
-        exit;
+        if (isset($_POST['buy'])) {
+            $receipt = $purchaseController->CreateReceipt($product['prod_name'], $_POST['ord_qty'], $product['prod_price']);
+    
+            header('Content-Type: text/plain');
+            header('Content-Disposition: attachment; filename="receipt.txt"');
+            echo $receipt;
+    
+            $productController->UpdateProductQty($product['id'], intval($product['prod_qty']) - intval($_POST['ord_qty']));
+            header('Location:index_nn.php');
+            exit;
+        }
     }
 ?>
 

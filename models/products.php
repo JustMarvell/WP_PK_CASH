@@ -71,7 +71,7 @@
         }
 
         // Edit product
-        public function EditProduct(): bool {
+        public function EditProduct() {
             $q = "UPDATE " . $this->table . " SET prod_name = :name, prod_qty = :quantity, 
                   prod_desc = :description, prod_img = :image, prod_price = :price, prod_category = :category 
                   WHERE id = :id";
@@ -133,7 +133,7 @@
         }
 
         // update product qty
-        public function UpdateProductQty($id, $new_quantity): bool {
+        public function UpdateProductQty($id, $new_quantity) {
             $q = "UPDATE " . $this->table . " SET prod_qty = :quantity WHERE id = :id";
             $sql = $this->db_conn->prepare($q);
             $sql->bindParam(':id', $id);

@@ -29,7 +29,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } elseif (isset($_POST['delete'])) {
             $productController->DeleteProduct($_POST); // Call method to delete product
         } elseif (isset($_POST['edit'])) {
-            $utils->Redirect('admin_edit_prod.php'); // Redirect to edit product page
+            // $utils->Redirect('admin_edit_prod.php'); // Redirect to edit product page
         }
         break;
     case 'GET':
@@ -157,9 +157,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     </div>
                     <span class="prod-stock">STOK TERBATAS</span>
                     <div class="prod-actions">
-                        <form method="GET" action="edit_product.php" style="display:inline;">
+                        <form method="GET" action="admin_edit_prod.php" style="display:inline;">
                             <input type="hidden" name="prod_id" value="<?php echo $product['id']; ?>" />
-                            <button type="submit" class="edit-btn">Edit</button>
+                            <button type="submit" class="edit-btn" name="edit">Edit</button>
                         </form>
                         <form method="POST" action="" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
                             <input type="hidden" name="prod_id" value="<?php echo $product['id']; ?>" />
